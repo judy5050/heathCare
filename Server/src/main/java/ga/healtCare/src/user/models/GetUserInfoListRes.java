@@ -1,11 +1,17 @@
 package ga.healtCare.src.user.models;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+import java.util.List;
+
 @Getter
 @AllArgsConstructor
-public class PostLoginRes {
+public class GetUserInfoListRes {
 
-    private final String jwt;
+    private List<UserInfo> userInfoList;
+    private Long count;
+
+
 }

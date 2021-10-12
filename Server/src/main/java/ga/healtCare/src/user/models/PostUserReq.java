@@ -6,10 +6,10 @@ import lombok.*;
 @Getter
 
 public class PostUserReq {
-    private String loginId;
-    private String userName;
-    private String password;
+
+    private String userNickName;
     private String birth;
-    private String msg;
+    private String userName;
+
 
 }

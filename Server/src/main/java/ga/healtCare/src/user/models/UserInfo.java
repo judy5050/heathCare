@@ -33,33 +33,32 @@ public class UserInfo extends BaseEntity {
     private String userName;
 
     /**
+     * 유저닉네임
+     */
+    @Column(name = "userNickName", nullable = false, length = 45)
+    private String userNickName;
+
+    /**
      * 생년월일
      */
-    @Column(name = "birth", length = 45)
+    @Column(name = "birth", nullable = false, length = 45)
     private String birth;
 
-    /**
-     * 특이사항
-     */
-    @Column(name = "msg",length =100 )
-    private String msg;
-
 
     /**
-     * 로그인 아이디
+     *
+     * @param userNickName
+     * @param groupId
+     * @param userName
+     * @param birth
      */
-    @Column(name = "loginId", nullable = false, length = 45)
-    private String loginId;
+    public UserInfo(String userNickName, Long groupId, String userName, String birth) {
+        this.userNickName=userNickName;
+        this.userName=userName;
+        this.groupIdx=groupId;
+        this.birth=birth;
 
-    /**
-     * 비밀번호
-     */
-    @Column(name = "password", nullable = false)
-    private String password;
-
-
-
-
+    }
 
 
 //    public UserInfo(String email, String password, String nickname, String phoneNumber) {

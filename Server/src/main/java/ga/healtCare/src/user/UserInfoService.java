@@ -14,6 +14,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
+
 
 @RequiredArgsConstructor
 @Service
@@ -21,6 +24,39 @@ public class UserInfoService {
     private final UserInfoRepository userInfoRepository;
     private final UserInfoProvider userInfoProvider;
     private final JwtService jwtService;
+
+    /**
+     * 유저 닉네임 기준으로 유저 유무 확인
+     */
+    public void  existUserCheck(String userNickName) throws BaseException {
+        UserInfo userInfo = getUserInfo(userNickName).orElse(null);
+        if(userInfo!=null){
+            throw new BaseException(BaseResponseStatus.DUPLICATED_NICKNAME);
+        }
+    }
+
+    /**
+     * 유저 닉네임기준으로 유저 가져오기
+     *
+     */
+    public Optional<UserInfo> getUserInfo(String userNickName){
+        Optional<UserInfo> userInfo = userInfoRepository.findByUserNickName(userNickName);
+
+        return userInfo;
+    }
+
+
+    /**
+     * 그룹 인덱스 기준으로 유저 정보 가져오기
+     */
+    public List<UserInfo> getUserInfoList(Long groupId) {
+        List<UserInfo> userInfoList = userInfoRepository.findAllByGroupIdx(groupId);
+        System.out.println("userInfoList = " + userInfoList);
+        return userInfoList;
+    }
+
+
+
 
 //    @Autowired
 //    public UserInfoService(UserInfoRepository userInfoRepository, UserInfoProvider userInfoProvider, JwtService jwtService) {

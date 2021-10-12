@@ -3,6 +3,8 @@ package ga.healtCare.src.user;
 import ga.healtCare.config.BaseResponse;
 import ga.healtCare.config.BaseResponseStatus;
 import ga.healtCare.config.BaseException;
+import ga.healtCare.src.group.GroupInfoService;
+import ga.healtCare.src.group.models.GroupInfo;
 import ga.healtCare.src.user.models.*;
 import ga.healtCare.src.user.models.*;
 import ga.healtCare.src.user.models.*;
@@ -25,8 +27,42 @@ public class UserInfoController {
     private final UserInfoProvider userInfoProvider;
     private final UserInfoService userInfoService;
     private final JwtService jwtService;
+    private final GroupInfoService groupInfoService;
+    private final UserInfoRepository userInfoRepository;
+    /**
+     * 그룹별 유저 등록 API
+     */
+    @PostMapping("/group/user")
+    BaseResponse createGroupUser(@RequestBody PostUserReq postUserReq){
+        try {
+            Long groupId = jwtService.getUserId();
+            //유저 닉네임 중복여부 확인
+            userInfoService.existUserCheck(postUserReq.getUserNickName());
+            userInfoRepository.save(new UserInfo(postUserReq.getUserNickName(),groupId,postUserReq.getUserNickName(),postUserReq.getBirth()));
 
-//
+        } catch (BaseException exception) {
+            return new BaseResponse<>(exception.getStatus());
+        }
+
+        return new BaseResponse<>(BaseResponseStatus.SUCCESS_POST_GROUP_USER);
+
+    }
+    /**
+     * 그룹별 유저 정보 가져오기
+     */
+    @GetMapping("/group/userList")
+    GetUserInfoListRes getUserInfoList() throws BaseException {
+        //1.그룹 아이디 가져오기
+        Long groupId = jwtService.getUserId();
+
+        //2.그룹별 회원정보 가져오기
+        List<UserInfo> userInfoList = userInfoService.getUserInfoList(groupId);
+        GetUserInfoListRes getUserInfoListRes = new GetUserInfoListRes(userInfoList, Long.valueOf(userInfoList.size()));
+        return getUserInfoListRes;
+    }
+
+
+
 //    /**
 //     * 회원가입 API
 //     */
@@ -55,7 +91,7 @@ public class UserInfoController {
 //
 //
 //    }
-
+//
 //
 //    /**
 //     * 회원 전체 조회 API
