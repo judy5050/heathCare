@@ -1,6 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    android:orientation="vertical">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="닉네임 : "/>
+
+        <EditText
+            android:id="@+id/et_home_prepare_add_nickname"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/btn_home_prepare_add_checknickname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="중복확인"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_home_prepare_add_checknickname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="중복확인이 필요합니다."
+        android:textSize="10dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="이름 : "/>
+
+        <EditText
+            android:id="@+id/et_home_prepare_add_name"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="생년월일 : "/>
+
+        <Spinner
+            android:id="@+id/spn_home_prepare_add_year"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"/>
+
+        <Spinner
+            android:id="@+id/spn_home_prepare_add_month"
+            android:layout_width="90dp"
+            android:layout_height="wrap_content"/>
+
+        <Spinner
+            android:id="@+id/spn_home_prepare_add_day"
+            android:layout_width="90dp"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

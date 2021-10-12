@@ -14,9 +14,11 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
+
+    private Button btn_login;
+
     private EditText et_id;
     private EditText et_pw;
-    private Button btn_login;
 
     private static final int PERMISSIONS_REQUEST_CODE = 100;
 
@@ -45,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //login REST
+
                 // success
                 Intent intent = new Intent(MainActivity.this, HomePrepareActivity.class);
                 startActivity(intent);

@@ -47,6 +47,7 @@ public class HomePrepareActivity extends AppCompatActivity {
         iv_home_prepare_1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // If have Information
                 Intent intent = new Intent(HomePrepareActivity.this, HomeActivity.class);
                 intent.putExtra("nickname", nickname);
                 intent.putExtra("name", name);
@@ -58,7 +59,9 @@ public class HomePrepareActivity extends AppCompatActivity {
         iv_home_prepare_2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                // If dont have Information
+                Intent intent = new Intent(HomePrepareActivity.this, HomePrepareAddActivity.class);
+                startActivity(intent);
             }
         });
 
