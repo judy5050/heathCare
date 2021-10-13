@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="20dp"
     android:orientation="vertical">
 
@@ -71,6 +71,94 @@
             android:layout_height="wrap_content"/>
 
     </LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="아이콘 선택"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
+
+        <ImageView
+            android:id="@+id/iv_man1"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/icon_man1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/iv_man2"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <ImageView
+            android:id="@+id/iv_man2"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/icon_man2"
+            app:layout_constraintLeft_toRightOf="@id/iv_man1"
+            app:layout_constraintRight_toLeftOf="@id/iv_man3"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <ImageView
+            android:id="@+id/iv_man3"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/icon_man3"
+            app:layout_constraintLeft_toRightOf="@id/iv_man2"
+            app:layout_constraintRight_toLeftOf="@id/iv_woman1"
+            app:layout_constraintTop_toTopOf="parent"/>
+        <ImageView
+            android:id="@+id/iv_woman1"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/icon_woman1"
+            app:layout_constraintLeft_toRightOf="@id/iv_man3"
+            app:layout_constraintRight_toLeftOf="@id/iv_woman2"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <ImageView
+            android:id="@+id/iv_woman2"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/icon_woman2"
+            app:layout_constraintLeft_toRightOf="@id/iv_woman1"
+            app:layout_constraintRight_toLeftOf="@id/iv_woman3"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <ImageView
+            android:id="@+id/iv_woman3"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/icon_woman3"
+            app:layout_constraintLeft_toRightOf="@id/iv_woman2"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="선택된 아이콘"/>
+
+        <ImageView
+            android:id="@+id/iv_home_prepare_add_icon"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/icon_choose"
+            android:layout_marginLeft="10dp"/>
+    </LinearLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="추가"/>
 
 
 

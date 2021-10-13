@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="240dp"
+    android:layout_height="match_parent"
+    android:layout_gravity="start"
+    android:orientation="vertical"
+    android:background="#ffffff"
+    android:id="@+id/drawer">
+
+    <Button
+        android:id="@+id/btn_settings"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="설정"/>
+    <Button
+        android:id="@+id/btn_community"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="게시판"/>
+    <Button
+        android:id="@+id/btn_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="추후 업데이트 예정"/>
+
+
+</LinearLayout>
