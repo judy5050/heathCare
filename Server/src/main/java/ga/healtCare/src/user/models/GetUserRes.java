@@ -6,8 +6,8 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public class GetUserRes {
-    private final int userId;
-    private final String email;
-    private final String nickname;
-    private final String phoneNumber;
+    private  Long userIdx;
+    private  String userName;
+    private  String userNickName;
+    private  String birth;
 }

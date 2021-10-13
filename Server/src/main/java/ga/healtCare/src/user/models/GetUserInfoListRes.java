@@ -10,7 +10,7 @@ import java.util.List;
 @AllArgsConstructor
 public class GetUserInfoListRes {
 
-    private List<UserInfo> userInfoList;
+    private List<GetUserRes> userInfoList;
     private Long count;
 
 

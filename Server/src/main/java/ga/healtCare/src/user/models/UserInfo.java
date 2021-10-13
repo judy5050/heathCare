@@ -1,6 +1,7 @@
 package ga.healtCare.src.user.models;
 
 import ga.healtCare.config.BaseEntity;
+import ga.healtCare.src.group.models.GroupInfo;
 import lombok.*;
 
 import javax.persistence.*;
@@ -18,13 +19,14 @@ public class UserInfo extends BaseEntity {
     @Id // PK를 의미하는 어노테이션
     @Column(name = "userIdx", nullable = false, updatable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     /**
      * 그룹인덱스
      */
-    @Column(name = "groupIdx", nullable = false)
-    private Long groupIdx;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "groupIdx")
+    private GroupInfo groupInfo;
 
     /**
      * 유저이름
@@ -48,14 +50,14 @@ public class UserInfo extends BaseEntity {
     /**
      *
      * @param userNickName
-     * @param groupId
+     * @param
      * @param userName
      * @param birth
      */
-    public UserInfo(String userNickName, Long groupId, String userName, String birth) {
+    public UserInfo(String userNickName, GroupInfo groupInfo, String userName, String birth) {
         this.userNickName=userNickName;
         this.userName=userName;
-        this.groupIdx=groupId;
+        this.groupInfo=groupInfo;
         this.birth=birth;
 
     }

@@ -2,6 +2,7 @@ package ga.healtCare.src.user;
 
 import ga.healtCare.config.BaseResponseStatus;
 import ga.healtCare.config.secret.Secret;
+import ga.healtCare.src.group.models.GroupInfo;
 import ga.healtCare.src.user.models.*;
 import ga.healtCare.src.user.models.*;
 import ga.healtCare.src.user.models.*;
@@ -49,11 +50,14 @@ public class UserInfoService {
     /**
      * 그룹 인덱스 기준으로 유저 정보 가져오기
      */
-    public List<UserInfo> getUserInfoList(Long groupId) {
-        List<UserInfo> userInfoList = userInfoRepository.findAllByGroupIdx(groupId);
+    public List<GetUserRes> getUserInfoList(GroupInfo groupInfo) {
+        List<GetUserRes> userInfoList = userInfoRepository.findAllByGroupIdx(groupInfo);
         System.out.println("userInfoList = " + userInfoList);
         return userInfoList;
     }
+
+
+
 
 
 

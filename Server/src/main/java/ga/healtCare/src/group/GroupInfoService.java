@@ -71,16 +71,16 @@ public class GroupInfoService {
      * 회원 중복여부 확인
      */
 
-    GroupInfo retrieveUserInfoByUserId(String userId) throws BaseException{
+    void retrieveUserInfoByUserId(String userId) throws BaseException{
 
         GroupInfo groupInfo  = groupInfoRepository.findByLoginId(userId).orElse(null);
-        System.out.println("groupInfo = " + groupInfo.getId());
+//        System.out.println("groupInfo = " + groupInfo.getId());
         if(groupInfo!=null){
             System.out.println("groupInfo = " + groupInfo.getId());
             throw new BaseException(BaseResponseStatus.FAILED_TO_POST_USER);
         }
 
-            return groupInfo;
+
     }
     //회원 아이디 기준 회원 정보 가져오기
     GroupInfo retrieveGroupInfoByUserId(String userId) throws BaseException{

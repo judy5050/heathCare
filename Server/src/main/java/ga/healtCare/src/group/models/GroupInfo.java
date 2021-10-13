@@ -1,9 +1,12 @@
 package ga.healtCare.src.group.models;
 
 import ga.healtCare.config.BaseEntity;
+import ga.healtCare.src.user.models.UserInfo;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @NoArgsConstructor(access = AccessLevel.PUBLIC) // Unit Test 를 위해 PUBLIC
 @EqualsAndHashCode(callSuper = false)
@@ -27,8 +30,8 @@ public class GroupInfo extends BaseEntity
      * 유저 인덱스
      */
 
-    @Column(name = "userIdx")
-    private Long userIdx;
+    @OneToMany(mappedBy = "groupInfo")
+    private List<UserInfo> userInfoList=new ArrayList<>();
 
     /**
      * 로그인 아이디

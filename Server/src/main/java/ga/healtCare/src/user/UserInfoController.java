@@ -3,6 +3,7 @@ package ga.healtCare.src.user;
 import ga.healtCare.config.BaseResponse;
 import ga.healtCare.config.BaseResponseStatus;
 import ga.healtCare.config.BaseException;
+import ga.healtCare.src.group.GroupInfoRepository;
 import ga.healtCare.src.group.GroupInfoService;
 import ga.healtCare.src.group.models.GroupInfo;
 import ga.healtCare.src.user.models.*;
@@ -29,36 +30,40 @@ public class UserInfoController {
     private final JwtService jwtService;
     private final GroupInfoService groupInfoService;
     private final UserInfoRepository userInfoRepository;
+    private final GroupInfoRepository groupInfoRepository;
     /**
      * 그룹별 유저 등록 API
      */
     @PostMapping("/group/user")
-    BaseResponse createGroupUser(@RequestBody PostUserReq postUserReq){
+    BaseResponse<PostUserRes> createGroupUser(@RequestBody PostUserReq postUserReq){
+        UserInfo userInfo;
         try {
             Long groupId = jwtService.getUserId();
+            GroupInfo groupInfo = groupInfoService.retrieveGroupInfoByGroupIdx(groupId);
             //유저 닉네임 중복여부 확인
             userInfoService.existUserCheck(postUserReq.getUserNickName());
-            userInfoRepository.save(new UserInfo(postUserReq.getUserNickName(),groupId,postUserReq.getUserNickName(),postUserReq.getBirth()));
+            userInfo= userInfoRepository.save(new UserInfo(postUserReq.getUserNickName(), groupInfo, postUserReq.getUserNickName(), postUserReq.getBirth()));
 
         } catch (BaseException exception) {
             return new BaseResponse<>(exception.getStatus());
         }
 
-        return new BaseResponse<>(BaseResponseStatus.SUCCESS_POST_GROUP_USER);
+        return new BaseResponse<>(BaseResponseStatus.SUCCESS_POST_GROUP_USER,new PostUserRes(userInfo.getId()));
 
     }
     /**
      * 그룹별 유저 정보 가져오기
      */
     @GetMapping("/group/userList")
-    GetUserInfoListRes getUserInfoList() throws BaseException {
+    BaseResponse<GetUserInfoListRes> getUserInfoList() throws BaseException {
         //1.그룹 아이디 가져오기
         Long groupId = jwtService.getUserId();
+        GroupInfo groupInfo = groupInfoService.retrieveGroupInfoByGroupIdx(groupId);
 
         //2.그룹별 회원정보 가져오기
-        List<UserInfo> userInfoList = userInfoService.getUserInfoList(groupId);
+        List<GetUserRes> userInfoList = userInfoService.getUserInfoList(groupInfo);
         GetUserInfoListRes getUserInfoListRes = new GetUserInfoListRes(userInfoList, Long.valueOf(userInfoList.size()));
-        return getUserInfoListRes;
+        return new BaseResponse<>(BaseResponseStatus.SUCCESS_READ_GROUP_USER,getUserInfoListRes);
     }
 
 

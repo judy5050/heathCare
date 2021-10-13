@@ -18,6 +18,12 @@ public enum BaseResponseStatus {
     SUCCESS_PATCH_USER(true, 1016, "회원정보 수정에 성공하였습니다."),
     SUCCESS_READ_SEARCH_USERS(true, 1017, "회원 검색 조회에 성공하였습니다."),
     SUCCESS_POST_GROUP_USER(true, 1018, "유저 등록에 성공하였습니다."),
+    SUCCESS_READ_GROUP_USER(true, 1019, "그룹별 회원 정보 조회에 성공하였습니다."),
+    SUCCESS_POST_MESSAGE(true, 1020, "게시글 등록에 성공하였습니다."),
+    SUCCESS_PATCH_MESSAGE(true, 1021, "게시글 수정에 성공하였습니다."),
+    SUCCESS_DELETE_MESSAGE(true, 1022, "게시글 삭제에 성공하였습니다."),
+    SUCCESS_READ_MESSAGES(true, 1023, "그룹별 회원 정보 조회에 성공하였습니다."),
+
 
     // 2000 : Request 오류
     REQUEST_ERROR(false, 2000, "입력값을 확인해주세요."),
@@ -31,7 +37,7 @@ public enum BaseResponseStatus {
     WRONG_PASSWORD(false, 2032, "비밀번호를 다시 입력해주세요."),
     DO_NOT_MATCH_PASSWORD(false, 2033, "비밀번호와 비밀번호확인 값이 일치하지 않습니다."),
     EMPTY_NICKNAME(false, 2040, "닉네임을 입력해주세요."),
-
+    EMPTY_MESSAGE(false, 2041, "내용을 입력해주세요."),
     // 3000 : Response 오류
     RESPONSE_ERROR(false, 3000, "값을 불러오는데 실패하였습니다."),
     NOT_FOUND_USER(false, 3010, "존재하지 않는 회원입니다."),
@@ -42,6 +48,9 @@ public enum BaseResponseStatus {
     FAILED_TO_DELETE_USER(false, 3015, "회원 탈퇴에 실패하였습니다."),
     FAILED_TO_PATCH_USER(false, 3016, "개인정보 수정에 실패하였습니다."),
     DUPLICATED_NICKNAME(false, 3017, "이미 존재하는 닉네임 입니다."),
+    NOT_FOUND_MESSAGE_BOARD(false, 3018, "존재하지 않는 게시글입니다."),
+    NOT_MATCH_MESSAGE_BOARD(false, 3019, "게시글 작성자와 다른 회원입니다."),
+
 
     // 4000 : Database 오류
     SERVER_ERROR(false, 4000, "서버와의 통신에 실패하였습니다."),
