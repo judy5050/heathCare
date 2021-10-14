@@ -22,8 +22,8 @@ public enum BaseResponseStatus {
     SUCCESS_POST_MESSAGE(true, 1020, "게시글 등록에 성공하였습니다."),
     SUCCESS_PATCH_MESSAGE(true, 1021, "게시글 수정에 성공하였습니다."),
     SUCCESS_DELETE_MESSAGE(true, 1022, "게시글 삭제에 성공하였습니다."),
-    SUCCESS_READ_MESSAGES(true, 1023, "그룹별 회원 정보 조회에 성공하였습니다."),
-
+    SUCCESS_READ_MESSAGES(true, 1023, "게시글 목록 조회에 성공하였습니다."),
+    SUCCESS_READ_MESSAGE(true, 1024, "게시글 조회에 성공하였습니다."),
 
     // 2000 : Request 오류
     REQUEST_ERROR(false, 2000, "입력값을 확인해주세요."),

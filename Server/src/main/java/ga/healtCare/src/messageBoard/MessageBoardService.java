@@ -82,11 +82,42 @@ public class MessageBoardService {
         messageBoardRepository.save(messageBoardInfo);
     }
 
+    /**
+     * 전체 게시글 리스트 조회
+     * @param page
+     * @return
+     */
     public GetMessageBoardListRes readMessageBoardList(int page) {
 
         PageRequest pageRequest=PageRequest.of(page,10);
         Page<MessageBoardInfo> messageList1 = messageBoardRepository.findMessageList(pageRequest);
         List<GetMessageBoardRes> content = messageList1.map((MessageBoardInfo t) -> new GetMessageBoardRes(t)).getContent();
           return new  GetMessageBoardListRes(content);
+    }
+
+    /**
+     * 게시글 읽기
+     * @param messageBoardIdx
+     */
+    public GetMessageBoardRes readMessageBoard(Long messageBoardIdx) throws BaseException {
+        MessageBoardInfo messageBoardInfo = messageBoardRepository.findById(messageBoardIdx).orElse(null);
+        if(messageBoardInfo==null||messageBoardInfo.getIsDeleted()=="Y"){
+            throw  new BaseException(BaseResponseStatus.NOT_FOUND_MESSAGE_BOARD);
+        }
+
+        return new GetMessageBoardRes(messageBoardInfo);
+    }
+
+    /**
+     * 내가 쓴 게시글 조회
+     * @param page
+     * @return
+     */
+    public GetMessageBoardListRes readMyMessageBoardList(int page,Long userIdx) {
+
+        PageRequest pageRequest=PageRequest.of(page,10);
+        Page<MessageBoardInfo> messageList1 = messageBoardRepository.findMyMessageList(pageRequest,userIdx);
+        List<GetMessageBoardRes> content = messageList1.map((MessageBoardInfo t) -> new GetMessageBoardRes(t)).getContent();
+        return new  GetMessageBoardListRes(content);
     }
 }

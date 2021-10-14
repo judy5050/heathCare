@@ -78,7 +78,7 @@ ga/healtCare/utils/ValidationRegex.java
  ga.healtCare.utils.ValidationRegex
 ga/healtCare/src/messageBoard/MessageBoardService.java
  ga.healtCare.src.messageBoard.MessageBoardService
-ga/healtCare/src/messageBoard/MessageBoardController.java
- ga.healtCare.src.messageBoard.MessageBoardController
 ga/healtCare/src/messageBoard/MessageBoardRepository.java
  ga.healtCare.src.messageBoard.MessageBoardRepository
+ga/healtCare/src/messageBoard/MessageBoardController.java
+ ga.healtCare.src.messageBoard.MessageBoardController

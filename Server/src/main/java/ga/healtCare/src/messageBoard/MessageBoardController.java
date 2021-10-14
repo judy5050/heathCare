@@ -5,10 +5,7 @@ import ga.healtCare.config.BaseException;
 import ga.healtCare.config.BaseResponse;
 import ga.healtCare.config.BaseResponseStatus;
 import ga.healtCare.src.group.models.GroupInfo;
-import ga.healtCare.src.messageBoard.model.GetMessageBoardListRes;
-import ga.healtCare.src.messageBoard.model.PathMessageBoardReq;
-import ga.healtCare.src.messageBoard.model.PostMessageBoardReq;
-import ga.healtCare.src.messageBoard.model.PostMessageBoardRes;
+import ga.healtCare.src.messageBoard.model.*;
 import ga.healtCare.src.user.UserInfoRepository;
 import ga.healtCare.src.user.UserInfoService;
 import ga.healtCare.src.user.models.UserInfo;
@@ -107,7 +104,7 @@ public class MessageBoardController {
     }
 
     /**
-     * 게시판 글 조회
+     * 게시판 글 목록  조회
      */
 
     @GetMapping("/messageBoards")
@@ -117,7 +114,7 @@ public class MessageBoardController {
         try {
             //1. jwt 토큰 유무 확인
             jwtService.getUserId();
-            //2. 게시글 조회
+            //2. 게시글 목록 조회
 
              getMessageBoardListRes = messageBoardService.readMessageBoardList(page);
         } catch (BaseException exception) {
@@ -126,11 +123,52 @@ public class MessageBoardController {
 
         return new BaseResponse<>(BaseResponseStatus.SUCCESS_READ_MESSAGES,getMessageBoardListRes);
 
+    }
+
+    /**
+     * 게시글 조회(단건)
+     */
+
+    @GetMapping("/messageBoards/{messageBoardIdx}")
+    public BaseResponse<GetMessageBoardRes>getMessageBoard(@PathVariable Long messageBoardIdx) throws BaseException {
+        //1. jwt 토큰 유무 확인
+        GetMessageBoardRes getMessageBoardRes;
+        try {
+            jwtService.getUserId();
+            //2. 게시글 조회
+             getMessageBoardRes = messageBoardService.readMessageBoard(messageBoardIdx);
+        }catch (BaseException exception) {
+            return new BaseResponse<>(exception.getStatus());
+        }
 
 
 
+        return new BaseResponse<>(BaseResponseStatus.SUCCESS_READ_MESSAGE,getMessageBoardRes);
 
     }
+
+    /**
+     * 내가 쓴 글 목록 조회
+     */
+
+    @GetMapping("/messageBoards/users/{userIdx}")
+    public BaseResponse<GetMessageBoardListRes>getMyMessageBoard(@PathVariable Long userIdx,@RequestParam("page")int page) throws BaseException {
+        //1. jwt 토큰 유무 확인
+        //2. 게시글 조회
+        GetMessageBoardListRes getMessageBoardListRes;
+        try {
+            jwtService.getUserId();
+
+             getMessageBoardListRes = messageBoardService.readMyMessageBoardList(page,userIdx);
+        }catch (BaseException exception) {
+            return new BaseResponse<>(exception.getStatus());
+        }
+
+
+        return new BaseResponse<>(BaseResponseStatus.SUCCESS_READ_MESSAGE,getMessageBoardListRes);
+
+    }
+
 
 }
 
