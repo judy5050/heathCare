@@ -1,14 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="COMMUNITY_WRITE"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Community"
         android:textSize="30dp"
-        android:gravity="center"/>
+        android:layout_marginBottom="10dp"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <EditText
+        android:id="@+id/et_community_write_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:hint="제목"
+        android:layout_margin="10dp"
+        android:padding="5dp"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+        <EditText
+            android:id="@+id/et_community_write_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="내용"
+            android:gravity="left"
+            android:layout_margin="10dp"
+            android:padding="5dp"/>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/btn_community_write_save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="저장"
+        android:layout_gravity="center" />
+
+</LinearLayout>

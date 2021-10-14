@@ -13,6 +13,7 @@ public class HomeActivity extends AppCompatActivity {
     private Button btn_drawer;
     private Button btn_settings;
     private Button btn_community;
+    private Button btn_search;
 
     private DrawerLayout drawerLayout;
     private View drawerView;
@@ -53,6 +54,7 @@ public class HomeActivity extends AppCompatActivity {
         btn_drawer = (Button) findViewById(R.id.btn_drawer);
         btn_community = (Button) findViewById(R.id.btn_community);
         btn_settings = (Button) findViewById(R.id.btn_settings);
+        btn_search = (Button) findViewById(R.id.btn_search);
 
         drawerLayout = (DrawerLayout) findViewById(R.id.activity_home);
         drawerView = (View) findViewById(R.id.drawer);
@@ -70,6 +72,7 @@ public class HomeActivity extends AppCompatActivity {
                 drawerLayout.openDrawer(drawerView);
             }
         });
+
         btn_community.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,6 +81,7 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
         btn_settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -87,5 +91,13 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+        btn_search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawerLayout.closeDrawers();
+                Intent intent = new Intent(HomeActivity.this, SearchActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }
