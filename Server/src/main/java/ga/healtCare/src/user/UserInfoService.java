@@ -51,7 +51,7 @@ public class UserInfoService {
      * 그룹 인덱스 기준으로 유저 정보 가져오기
      */
     public List<GetUserRes> getUserInfoList(GroupInfo groupInfo) {
-        List<GetUserRes> userInfoList = userInfoRepository.findAllByGroupIdx(groupInfo);
+        List<GetUserRes> userInfoList = userInfoRepository.findAllByGroupIdx(groupInfo.getId());
         System.out.println("userInfoList = " + userInfoList);
         return userInfoList;
     }
@@ -70,6 +70,20 @@ public class UserInfoService {
         userInfoRepository.save(userInfo);
 
 
+    }
+
+    /**
+     * 회원 삭제 API
+     */
+    public void deleteUserInfo(Long userIdx) throws BaseException {
+
+        UserInfo userInfo = userInfoRepository.findById(userIdx).orElse(null);
+        if(userInfo==null||userInfo.getIsDeleted().equals("Y")){
+            throw  new BaseException(BaseResponseStatus.NOT_FOUND_USER);
+        }
+
+        userInfo.setIsDeleted("Y");
+        userInfoRepository.save(userInfo);
     }
 
 

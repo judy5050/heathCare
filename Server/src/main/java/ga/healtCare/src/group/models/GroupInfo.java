@@ -1,6 +1,7 @@
 package ga.healtCare.src.group.models;
 
 import ga.healtCare.config.BaseEntity;
+import ga.healtCare.src.cleaningInfo.model.CleaningInfo;
 import ga.healtCare.src.user.models.UserInfo;
 import lombok.*;
 
@@ -45,6 +46,13 @@ public class GroupInfo extends BaseEntity
     @Column(name = "password", nullable = false)
     private String password;
 
+    /**
+     * 청소정보
+     * @param loginId
+     * @param password
+     */
+    @OneToMany(mappedBy = "groupInfo")
+    private List<CleaningInfo> cleaningInfoList=new ArrayList<>();
 
     public GroupInfo(String loginId, String password) {
         this.loginId=loginId;

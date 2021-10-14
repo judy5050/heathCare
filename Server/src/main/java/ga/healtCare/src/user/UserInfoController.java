@@ -37,12 +37,24 @@ public class UserInfoController {
     @PostMapping("/group/user")
     BaseResponse<PostUserRes> createGroupUser(@RequestBody PostUserReq postUserReq){
         UserInfo userInfo;
+        if(postUserReq.getUserName()==null||postUserReq.getUserName().length()==0){
+            return new BaseResponse<>(BaseResponseStatus.EMPTY_NAME);
+        }
+        if(postUserReq.getUserNickName()==null||postUserReq.getUserNickName().length()==0){
+            return new BaseResponse<>(BaseResponseStatus.EMPTY_NICKNAME);
+        }
+        if(postUserReq.getBirth()==null||postUserReq.getBirth().length()==0){
+            return new BaseResponse<>(BaseResponseStatus.EMPTY_BIRTH);
+        }
+        if(postUserReq.getPhotoIdx()==null){
+            return new BaseResponse<>(BaseResponseStatus.EMPTY_PHOTO);
+        }
         try {
             Long groupId = jwtService.getUserId();
             GroupInfo groupInfo = groupInfoService.retrieveGroupInfoByGroupIdx(groupId);
             //유저 닉네임 중복여부 확인
             userInfoService.existUserCheck(postUserReq.getUserNickName());
-            userInfo= userInfoRepository.save(new UserInfo(postUserReq.getUserNickName(), groupInfo, postUserReq.getUserNickName(), postUserReq.getBirth()));
+            userInfo= userInfoRepository.save(new UserInfo(postUserReq.getUserNickName(), groupInfo, postUserReq.getUserNickName(), postUserReq.getBirth(),postUserReq.getPhotoIdx()));
 
         } catch (BaseException exception) {
             return new BaseResponse<>(exception.getStatus());
@@ -73,7 +85,7 @@ public class UserInfoController {
     public BaseResponse updateUserInfo(@PathVariable Long userIdx,@RequestBody PatchUserReq patchUserReq) throws BaseException {
 
 
-        System.out.println("patchUserReq.() = " + patchUserReq.getUserNickName());
+
         try {
             Long groupId = jwtService.getUserId();
             userInfoService.patchUserInfo(userIdx,patchUserReq);
@@ -85,6 +97,28 @@ public class UserInfoController {
 
 
         return new BaseResponse(BaseResponseStatus.SUCCESS_PATCH_USER);
+    }
+
+    /**
+     * 회원 정보 삭제 API
+     *
+     */
+
+    @DeleteMapping("/groups/users/{userIdx}")
+    public BaseResponse deleteUserInfo(@PathVariable Long userIdx){
+
+        try {
+            Long groupId = jwtService.getUserId();
+            userInfoService.deleteUserInfo(userIdx);
+        }catch (BaseException e){
+            return new BaseResponse(e.getStatus());
+        }
+
+
+
+
+        return new BaseResponse(BaseResponseStatus.SUCCESS_DELETE_USER);
+
     }
 
 

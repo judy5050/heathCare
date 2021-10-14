@@ -10,4 +10,5 @@ public class GetUserRes {
     private  String userName;
     private  String userNickName;
     private  String birth;
+    private Integer photoIdx;
 }

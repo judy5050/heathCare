@@ -46,6 +46,9 @@ public class UserInfo extends BaseEntity {
     @Column(name = "birth", nullable = false, length = 45)
     private String birth;
 
+    @Column(name = "photoIdx")
+    private Integer photoIdx;
+
 
     /**
      *
@@ -54,11 +57,12 @@ public class UserInfo extends BaseEntity {
      * @param userName
      * @param birth
      */
-    public UserInfo(String userNickName, GroupInfo groupInfo, String userName, String birth) {
+    public UserInfo(String userNickName, GroupInfo groupInfo, String userName, String birth,Integer photoIdx) {
         this.userNickName=userNickName;
         this.userName=userName;
         this.groupInfo=groupInfo;
         this.birth=birth;
+        this.photoIdx=photoIdx;
 
     }
 

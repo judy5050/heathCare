@@ -10,6 +10,7 @@ public class PostUserReq {
     private String userNickName;
     private String birth;
     private String userName;
+    private Integer photoIdx;
 
 
 }
