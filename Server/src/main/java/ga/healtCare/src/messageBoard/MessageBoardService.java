@@ -116,7 +116,7 @@ public class MessageBoardService {
     public GetMessageBoardListRes readMyMessageBoardList(int page,Long userIdx) {
 
         PageRequest pageRequest=PageRequest.of(page,10);
-        Page<MessageBoardInfo> messageList1 = messageBoardRepository.findMyMessageList(pageRequest,userIdx);
+        Page<MessageBoardInfo> messageList1 = messageBoardRepository.findMyMessageList(pageRequest,userIdx,"N");
         List<GetMessageBoardRes> content = messageList1.map((MessageBoardInfo t) -> new GetMessageBoardRes(t)).getContent();
         return new  GetMessageBoardListRes(content);
     }

@@ -27,9 +27,9 @@ public interface MessageBoardRepository extends JpaRepository<MessageBoardInfo,L
     @Query("select m  from MessageBoardInfo  m order by m.createdAt desc ")
     Page<MessageBoardInfo> findMessageList(PageRequest pageRequest);
 
-//내 게시글 조회
-@Query("select m from MessageBoardInfo  m   where m.userInfo.id =:userIdx  order by m.createdAt desc ")
-Page<MessageBoardInfo> findMyMessageList( Pageable pageable,@Param("userIdx") Long userIdx);
+    //내 게시글 조회
+    @Query("select m from MessageBoardInfo  m   where m.userInfo.id =:userIdx and m.isDeleted =:isDeleted  order by m.createdAt desc ")
+    Page<MessageBoardInfo> findMyMessageList( Pageable pageable,@Param("userIdx") Long userIdx,@Param("isDeleted") String isDeleted);
     //내 게시글 조회
 //    @Query("select m from MessageBoardInfo  m   where m.userInfo.id =:userIdx  order by m.createdAt desc ")
 //    Page<MessageBoardInfo> findMyMessageList(@Param("userIdx") Long userIdx, Pageable pageable);

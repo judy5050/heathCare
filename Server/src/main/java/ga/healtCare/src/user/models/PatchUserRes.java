@@ -6,7 +6,7 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public class PatchUserRes {
-    private final String email;
-    private final String nickname;
-    private final String phoneNumber;
+
+    private final String userNickName;
+
 }

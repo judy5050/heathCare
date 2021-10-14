@@ -24,6 +24,9 @@ public enum BaseResponseStatus {
     SUCCESS_DELETE_MESSAGE(true, 1022, "게시글 삭제에 성공하였습니다."),
     SUCCESS_READ_MESSAGES(true, 1023, "게시글 목록 조회에 성공하였습니다."),
     SUCCESS_READ_MESSAGE(true, 1024, "게시글 조회에 성공하였습니다."),
+    SUCCESS_POST_COMMENT(true, 1025, "댓글 등록에 성공하였습니다."),
+    SUCCESS_DELETE_COMMENT(true, 1026, "댓글 삭제에 성공하였습니다."),
+    SUCCESS_READ_COMMENT(true, 1027, "댓글 조회에 성공하였습니다."),
 
     // 2000 : Request 오류
     REQUEST_ERROR(false, 2000, "입력값을 확인해주세요."),
@@ -50,7 +53,9 @@ public enum BaseResponseStatus {
     DUPLICATED_NICKNAME(false, 3017, "이미 존재하는 닉네임 입니다."),
     NOT_FOUND_MESSAGE_BOARD(false, 3018, "존재하지 않는 게시글입니다."),
     NOT_MATCH_MESSAGE_BOARD(false, 3019, "게시글 작성자와 다른 회원입니다."),
-
+    NOT_FOUND_COMMENT(false, 3020, "존재하지 않는 댓글입니다."),
+    NOT_MATCH_COMMENT(false, 3021, "댓글 작성자와 다른 회원입니다."),
+    NOT_MATCH_MESSAGE_BOARD_COMMENT(false, 3022, "해당 게시글에 존재하지 않는 댓글입니다."),
 
     // 4000 : Database 오류
     SERVER_ERROR(false, 4000, "서버와의 통신에 실패하였습니다."),

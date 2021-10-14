@@ -12,7 +12,7 @@ import javax.persistence.*;
 @EqualsAndHashCode(callSuper = false)
 @Getter
 @Setter
-@Table(name = "commentInfo")
+@Table(name = "CommentInfo")
 @Entity
 public class CommentInfo extends BaseEntity {
 
@@ -29,6 +29,13 @@ public class CommentInfo extends BaseEntity {
     @JoinColumn(name = "messageBoardIdx")
     private MessageBoardInfo messageBoardInfo;
 
+    @Column(name = "commentMsg")
+    private String msg;
 
 
+    public CommentInfo(UserInfo userInfo, MessageBoardInfo messageBoardInfo, String msg) {
+        this.userInfo=userInfo;
+        this.messageBoardInfo=messageBoardInfo;
+        this.msg=msg;
+    }
 }

@@ -65,6 +65,28 @@ public class UserInfoController {
         GetUserInfoListRes getUserInfoListRes = new GetUserInfoListRes(userInfoList, Long.valueOf(userInfoList.size()));
         return new BaseResponse<>(BaseResponseStatus.SUCCESS_READ_GROUP_USER,getUserInfoListRes);
     }
+    /**
+     * 회원 정보 수정
+     *
+     */
+    @PatchMapping("/groups/users/{userIdx}")
+    public BaseResponse updateUserInfo(@PathVariable Long userIdx,@RequestBody PatchUserReq patchUserReq) throws BaseException {
+
+
+        System.out.println("patchUserReq.() = " + patchUserReq.getUserNickName());
+        try {
+            Long groupId = jwtService.getUserId();
+            userInfoService.patchUserInfo(userIdx,patchUserReq);
+        }catch (BaseException e){
+            return new BaseResponse(e.getStatus());
+        }
+
+
+
+
+        return new BaseResponse(BaseResponseStatus.SUCCESS_PATCH_USER);
+    }
+
 
 
 

@@ -56,10 +56,21 @@ public class UserInfoService {
         return userInfoList;
     }
 
+    /**
+     * 회원 정보 수정
+     * @param userIdx
+     */
+    public void patchUserInfo(Long userIdx,PatchUserReq patchUserReq) throws BaseException {
+
+        UserInfo userInfo = userInfoRepository.findById(userIdx).orElse(null);
+        if(userInfo==null||userInfo.getIsDeleted().equals("Y")){
+            throw new BaseException(BaseResponseStatus.NOT_FOUND_USER);
+        }
+        userInfo.setUserNickName(patchUserReq.getUserNickName());
+        userInfoRepository.save(userInfo);
 
 
-
-
+    }
 
 
 //    @Autowired
