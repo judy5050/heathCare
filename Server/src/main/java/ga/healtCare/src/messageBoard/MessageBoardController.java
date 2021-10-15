@@ -24,9 +24,18 @@ public class MessageBoardController {
     private final UserInfoRepository userInfoRepository;
     private final MessageBoardService messageBoardService;
 
+    /**
+     * 게시글 등록
+     * @param userIdx
+     * @param postMessageBoardReq
+     * @return
+     */
     @PostMapping("/messageBoard/{userIdx}")
     public BaseResponse<PostMessageBoardRes> postMessageBoard(@PathVariable Long userIdx, @RequestBody PostMessageBoardReq postMessageBoardReq){
 
+        if(postMessageBoardReq.getTitle()==null||postMessageBoardReq.getTitle().length()==0){
+            return new BaseResponse(BaseResponseStatus.EMPTY_TITLE);
+        }
         if(postMessageBoardReq.getMessage()==null||postMessageBoardReq.getMessage().length()==0){
               return new BaseResponse(BaseResponseStatus.EMPTY_MESSAGE);
         }
@@ -58,9 +67,7 @@ public class MessageBoardController {
     @PatchMapping("/messageBoard/{messageBoardIdx}/{userIdx}")
     public BaseResponse patchMessage(@PathVariable Long messageBoardIdx, @PathVariable Long userIdx, @RequestBody PathMessageBoardReq patchMessageReq){
 
-        if(patchMessageReq.getMessage()==null||patchMessageReq.getMessage().length()==0){
-            return new BaseResponse(BaseResponseStatus.EMPTY_MESSAGE);
-        }
+
         try {
             //1. jwt 토큰 유무 확인
             jwtService.getUserId();

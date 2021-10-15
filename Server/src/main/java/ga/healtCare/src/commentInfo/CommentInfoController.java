@@ -30,7 +30,7 @@ public class CommentInfoController {
 
         PostCommentRes postCommentRes;
         if(postCommentReq.getMsg()==null||postCommentReq.getMsg().length()==0){
-            return new BaseResponse<>(BaseResponseStatus.EMPTY_NICKNAME);
+            return new BaseResponse<>(BaseResponseStatus.EMPTY_COMMENT);
         }
         try {
                 jwtService.getUserId();

@@ -57,6 +57,9 @@ public enum BaseResponseStatus {
     EMPTY_NAME(false, 2041, "이름을 입력해주세요."),
     EMPTY_BIRTH(false, 2042, "생년월일을 입력해주세요."),
     EMPTY_PHOTO(false, 2043, "사진을 등록해주세요."),
+    EMPTY_TITLE(false, 2044, "제목을 입력해주세요."),
+    EMPTY_COMMENT(false, 2045, "댓글을 입력해주세요."),
+
     // 3000 : Response 오류
     RESPONSE_ERROR(false, 3000, "값을 불러오는데 실패하였습니다."),
     NOT_FOUND_USER(false, 3010, "존재하지 않는 회원입니다."),

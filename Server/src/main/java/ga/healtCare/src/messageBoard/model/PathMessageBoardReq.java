@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Getter
 public class PathMessageBoardReq {
+    private String title;
     private String message;
 }
 

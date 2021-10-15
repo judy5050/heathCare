@@ -1,6 +1,7 @@
 package ga.healtCare.src.messageBoard;
 
 import ga.healtCare.config.BaseException;
+import ga.healtCare.config.BaseResponse;
 import ga.healtCare.config.BaseResponseStatus;
 import ga.healtCare.src.messageBoard.model.*;
 import ga.healtCare.src.user.UserInfoRepository;
@@ -31,7 +32,7 @@ public class MessageBoardService {
         if(userInfo==null){
             throw new BaseException(BaseResponseStatus.NOT_FOUND_USER);
         }
-        MessageBoardInfo messageBoardInfo = new MessageBoardInfo(postMessageBoardReq.getMessage(),userInfo);
+        MessageBoardInfo messageBoardInfo = new MessageBoardInfo(postMessageBoardReq.getMessage(),userInfo, postMessageBoardReq.getTitle());
         MessageBoardInfo message = messageBoardRepository.save(messageBoardInfo);
          return message.getId();
 
@@ -51,14 +52,20 @@ public class MessageBoardService {
         //게시글 작성 여부 파악 (다른유저가 게시글을 수정할 수 없도록)
         MessageBoardInfo messageBoardInfo = messageBoardRepository.findById(messageBoardIdx).orElse(null);
         //수정하려는 게시물 존재여부 확인
-        if(messageBoardInfo==null){
+        if(messageBoardInfo==null||messageBoardInfo.getIsDeleted().equals("Y")){
             throw new BaseException(BaseResponseStatus.NOT_FOUND_MESSAGE_BOARD);
         }
         if(messageBoardInfo.getId()!=messageBoardIdx){
             throw new BaseException(BaseResponseStatus.NOT_MATCH_MESSAGE_BOARD);
         }
 
-        messageBoardInfo.setMessage(pathMessageBoardReq.getMessage());
+        if(pathMessageBoardReq.getMessage()!=null&&pathMessageBoardReq.getMessage().length()!=0){
+            messageBoardInfo.setMessage(pathMessageBoardReq.getMessage());
+        }
+        if(pathMessageBoardReq.getTitle()!=null&&pathMessageBoardReq.getTitle().length()!=0){
+            messageBoardInfo.setTitle(pathMessageBoardReq.getTitle());
+        }
+
         messageBoardRepository.save(messageBoardInfo);
     }
     /**
@@ -90,7 +97,7 @@ public class MessageBoardService {
     public GetMessageBoardListRes readMessageBoardList(int page) {
 
         PageRequest pageRequest=PageRequest.of(page,10);
-        Page<MessageBoardInfo> messageList1 = messageBoardRepository.findMessageList(pageRequest);
+        Page<MessageBoardInfo> messageList1 = messageBoardRepository.findMessageList(pageRequest,"N");
         List<GetMessageBoardRes> content = messageList1.map((MessageBoardInfo t) -> new GetMessageBoardRes(t)).getContent();
           return new  GetMessageBoardListRes(content);
     }

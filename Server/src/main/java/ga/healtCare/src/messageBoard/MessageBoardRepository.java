@@ -21,11 +21,11 @@ import java.util.Optional;
 
 public interface MessageBoardRepository extends JpaRepository<MessageBoardInfo,Long> {
 
-    @Query("select new ga.healtCare.src.user.models.GetUserRes(m.id,m.userName,m.userNickName,m.birth,m.photoIdx) from UserInfo  m where m.groupInfo = :groupInfo")
-    List<GetUserRes> findAllByGroupIdx(@Param("groupInfo") GroupInfo groupInfo);
+//    @Query("select new ga.healtCare.src.user.models.GetUserRes(m.id,m.userName,m.userNickName,m.birth,m.photoIdx) from UserInfo  m where m.groupInfo = :groupInfo")
+//    List<GetUserRes> findAllByGroupIdx(@Param("groupInfo") GroupInfo groupInfo);
 
-    @Query("select m  from MessageBoardInfo  m order by m.createdAt desc ")
-    Page<MessageBoardInfo> findMessageList(PageRequest pageRequest);
+    @Query("select m from MessageBoardInfo  m   where  m.isDeleted =:isDeleted  order by m.createdAt desc ")
+    Page<MessageBoardInfo> findMessageList(Pageable pageable,@Param("isDeleted") String isDeleted);
 
     //내 게시글 조회
     @Query("select m from MessageBoardInfo  m   where m.userInfo.id =:userIdx and m.isDeleted =:isDeleted  order by m.createdAt desc ")

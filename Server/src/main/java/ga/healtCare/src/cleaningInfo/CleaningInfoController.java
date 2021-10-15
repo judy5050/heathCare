@@ -6,6 +6,7 @@ import ga.healtCare.config.BaseResponse;
 import ga.healtCare.config.BaseResponseStatus;
 import ga.healtCare.src.cleaningInfo.model.GetCleaningInfoRes;
 import ga.healtCare.src.cleaningInfo.model.PostCleaningInfoReq;
+import ga.healtCare.src.cleaningInfo.model.PostCleaningInfoRes;
 import ga.healtCare.utils.JwtService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,9 +26,10 @@ public class CleaningInfoController {
      * @return
      */
     @PostMapping("/cleaningInfo")
-    public BaseResponse createCleaningInfo(@RequestBody PostCleaningInfoReq postCleaningInfoReq){
+    public BaseResponse<PostCleaningInfoRes> createCleaningInfo(@RequestBody PostCleaningInfoReq postCleaningInfoReq){
 
         Long groupIdx;
+        PostCleaningInfoRes cleaningInfo;
         if(postCleaningInfoReq.getAutoCleaningCycle()==null){
             return new BaseResponse(BaseResponseStatus.EMPTY_AUTO_CLEANING);
         }
@@ -43,7 +45,7 @@ public class CleaningInfoController {
         }
         try {
              groupIdx = jwtService.getUserId();
-             cleaningInfoService.createCleaningInfo(postCleaningInfoReq,groupIdx);
+             cleaningInfo = cleaningInfoService.createCleaningInfo(postCleaningInfoReq, groupIdx);
 
         }catch (BaseException e){
             return new BaseResponse(e.getStatus());
@@ -51,7 +53,7 @@ public class CleaningInfoController {
 
 
 
-        return new BaseResponse(BaseResponseStatus.SUCCESS_POST_CLEANING);
+        return new BaseResponse(BaseResponseStatus.SUCCESS_POST_CLEANING,cleaningInfo);
     }
 
     /**

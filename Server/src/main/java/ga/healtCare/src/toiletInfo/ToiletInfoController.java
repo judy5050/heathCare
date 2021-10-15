@@ -47,6 +47,11 @@ public class ToiletInfoController {
         return new BaseResponse(BaseResponseStatus.SUCCESS_POST_TOILET,postToiletInfoRes);
     }
 
+    /**
+     * 화장실 이용시간 조회
+     * @param page
+     * @return
+     */
     @GetMapping("/toiletTime")
     public BaseResponse<GetToiletInfoListRes> readToiletTimeList(@Param("page")int page){
 

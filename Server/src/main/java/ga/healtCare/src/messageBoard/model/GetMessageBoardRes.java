@@ -12,6 +12,7 @@ import java.text.SimpleDateFormat;
 @NoArgsConstructor
 @Getter
 public class GetMessageBoardRes {
+    private Long messageBoardIdx;
     private String userNickName;
     private String message;
     private String title;
@@ -19,7 +20,9 @@ public class GetMessageBoardRes {
     private String createdDate;
 
 
+
     public GetMessageBoardRes(MessageBoardInfo messageBoardInfo){
+        this.messageBoardIdx=messageBoardInfo.getId();
         this.userNickName=messageBoardInfo.getUserInfo().getUserNickName();
         this.message=messageBoardInfo.getMessage();
         this.title=messageBoardInfo.getTitle();

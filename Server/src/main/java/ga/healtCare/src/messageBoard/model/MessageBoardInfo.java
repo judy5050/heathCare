@@ -37,8 +37,8 @@ public class MessageBoardInfo extends BaseEntity {
     }
 
 
-    public MessageBoardInfo(Long id, String title, String message) {
-        this.id=id;
+    public MessageBoardInfo( String message,UserInfo userInfo,String title) {
+        this.userInfo=userInfo;
         this.title=title;
         this.message=message;
     }
