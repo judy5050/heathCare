@@ -8,7 +8,7 @@ import lombok.Getter;
 public class GetCleaningInfoRes {
     private Long cleaningIdx;
     private Integer liquidAmount;
-    private Integer recentlyCleaning;
+    private Long recentlyCleaning;
     private Integer isCleaned;
     private Integer autoCleaningCycle;
 

@@ -115,7 +115,7 @@ public class MessageBoardController {
      */
 
     @GetMapping("/messageBoards")
-    public BaseResponse<GetMessageBoardListRes> getMessageList(@RequestParam("page") int page){
+    public BaseResponse<GetMessageBoardListRes> getMessageList(){
 
         GetMessageBoardListRes getMessageBoardListRes;
         try {
@@ -123,7 +123,7 @@ public class MessageBoardController {
             jwtService.getUserId();
             //2. 게시글 목록 조회
 
-             getMessageBoardListRes = messageBoardService.readMessageBoardList(page);
+             getMessageBoardListRes = messageBoardService.readMessageBoardList();
         } catch (BaseException exception) {
             return new BaseResponse<>(exception.getStatus());
         }
@@ -159,14 +159,14 @@ public class MessageBoardController {
      */
 
     @GetMapping("/messageBoards/users/{userIdx}")
-    public BaseResponse<GetMessageBoardListRes>getMyMessageBoard(@PathVariable Long userIdx,@RequestParam("page")int page) throws BaseException {
+    public BaseResponse<GetMessageBoardListRes>getMyMessageBoard(@PathVariable Long userIdx) throws BaseException {
         //1. jwt 토큰 유무 확인
         //2. 게시글 조회
         GetMessageBoardListRes getMessageBoardListRes;
         try {
             jwtService.getUserId();
 
-             getMessageBoardListRes = messageBoardService.readMyMessageBoardList(page,userIdx);
+             getMessageBoardListRes = messageBoardService.readMyMessageBoardList(userIdx);
         }catch (BaseException exception) {
             return new BaseResponse<>(exception.getStatus());
         }

@@ -51,7 +51,7 @@ public class UserInfoService {
      * 그룹 인덱스 기준으로 유저 정보 가져오기
      */
     public List<GetUserRes> getUserInfoList(GroupInfo groupInfo) {
-        List<GetUserRes> userInfoList = userInfoRepository.findAllByGroupIdx(groupInfo.getId());
+        List<GetUserRes> userInfoList = userInfoRepository.findAllByGroupIdx(groupInfo.getId(),"N");
         System.out.println("userInfoList = " + userInfoList);
         return userInfoList;
     }

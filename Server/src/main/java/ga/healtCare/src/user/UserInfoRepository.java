@@ -17,8 +17,8 @@ public interface UserInfoRepository extends JpaRepository<UserInfo, Long> {
     Optional<UserInfo> findByUserNickName(String userNickName);
     List<UserInfo> findAllById(Long groupId);
 
-    @Query("select new ga.healtCare.src.user.models.GetUserRes(m.id,m.userName,m.userNickName,m.birth,m.photoIdx) from UserInfo  m where m.groupInfo.id = :groupIdx")
-    List<GetUserRes> findAllByGroupIdx(@Param("groupIdx") Long groupIdx);
+    @Query("select new ga.healtCare.src.user.models.GetUserRes(m.id,m.userName,m.userNickName,m.birth,m.photoIdx) from UserInfo  m where m.groupInfo.id = :groupIdx and m.isDeleted =:isDeleted")
+    List<GetUserRes> findAllByGroupIdx(@Param("groupIdx") Long groupIdx,@Param("isDeleted") String isDeleted);
     //    List<UserInfo> findByStatus(String status);
 //    List<UserInfo> findByEmailAndStatus(String email, String status);
 //    List<UserInfo> findByStatusAndNicknameIsContaining(String status, String word);

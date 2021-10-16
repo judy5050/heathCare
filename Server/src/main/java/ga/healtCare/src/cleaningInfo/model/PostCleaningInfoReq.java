@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Getter
 public class PostCleaningInfoReq {
     private Integer liquidAmount;
-    private Integer recentlyCleaningTime;
+    private Long recentlyCleaningTime;
     private Integer isCleaned;
     private Integer autoCleaningCycle;
 }

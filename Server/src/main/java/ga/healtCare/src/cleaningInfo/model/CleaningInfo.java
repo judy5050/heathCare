@@ -30,7 +30,7 @@ public class CleaningInfo extends BaseEntity {
     private Integer liquidAmount;
 
     @Column(name = "recentlyCleaningTime")
-    private Integer recentlyCleaningTime;
+    private Long recentlyCleaningTime;
 
     @Column(name = "isCleaned")
     private Integer isCleaned;

@@ -25,11 +25,11 @@ public interface MessageBoardRepository extends JpaRepository<MessageBoardInfo,L
 //    List<GetUserRes> findAllByGroupIdx(@Param("groupInfo") GroupInfo groupInfo);
 
     @Query("select m from MessageBoardInfo  m   where  m.isDeleted =:isDeleted  order by m.createdAt desc ")
-    Page<MessageBoardInfo> findMessageList(Pageable pageable,@Param("isDeleted") String isDeleted);
+    List<MessageBoardInfo> findMessageList(@Param("isDeleted") String isDeleted);
 
     //내 게시글 조회
     @Query("select m from MessageBoardInfo  m   where m.userInfo.id =:userIdx and m.isDeleted =:isDeleted  order by m.createdAt desc ")
-    Page<MessageBoardInfo> findMyMessageList( Pageable pageable,@Param("userIdx") Long userIdx,@Param("isDeleted") String isDeleted);
+    List<MessageBoardInfo> findMyMessageList(@Param("userIdx") Long userIdx,@Param("isDeleted") String isDeleted);
     //내 게시글 조회
 //    @Query("select m from MessageBoardInfo  m   where m.userInfo.id =:userIdx  order by m.createdAt desc ")
 //    Page<MessageBoardInfo> findMyMessageList(@Param("userIdx") Long userIdx, Pageable pageable);

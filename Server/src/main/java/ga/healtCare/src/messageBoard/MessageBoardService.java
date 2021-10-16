@@ -3,6 +3,8 @@ package ga.healtCare.src.messageBoard;
 import ga.healtCare.config.BaseException;
 import ga.healtCare.config.BaseResponse;
 import ga.healtCare.config.BaseResponseStatus;
+import ga.healtCare.src.hospitalInfo.model.GetHospitalInfoRes;
+import ga.healtCare.src.hospitalInfo.model.HospitalInfo;
 import ga.healtCare.src.messageBoard.model.*;
 import ga.healtCare.src.user.UserInfoRepository;
 import ga.healtCare.src.user.UserInfoService;
@@ -15,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -94,11 +97,11 @@ public class MessageBoardService {
      * @param page
      * @return
      */
-    public GetMessageBoardListRes readMessageBoardList(int page) {
+    public GetMessageBoardListRes readMessageBoardList() {
 
-        PageRequest pageRequest=PageRequest.of(page,10);
-        Page<MessageBoardInfo> messageList1 = messageBoardRepository.findMessageList(pageRequest,"N");
-        List<GetMessageBoardRes> content = messageList1.map((MessageBoardInfo t) -> new GetMessageBoardRes(t)).getContent();
+//        PageRequest pageRequest=PageRequest.of(page,10);
+        List<MessageBoardInfo> messageList1 = messageBoardRepository.findMessageList("N");
+        List<GetMessageBoardRes> content = messageList1.stream().map((MessageBoardInfo t) -> new GetMessageBoardRes(t)).collect(Collectors.toList());
           return new  GetMessageBoardListRes(content);
     }
 
@@ -120,11 +123,11 @@ public class MessageBoardService {
      * @param page
      * @return
      */
-    public GetMessageBoardListRes readMyMessageBoardList(int page,Long userIdx) {
+    public GetMessageBoardListRes readMyMessageBoardList(Long userIdx) {
 
-        PageRequest pageRequest=PageRequest.of(page,10);
-        Page<MessageBoardInfo> messageList1 = messageBoardRepository.findMyMessageList(pageRequest,userIdx,"N");
-        List<GetMessageBoardRes> content = messageList1.map((MessageBoardInfo t) -> new GetMessageBoardRes(t)).getContent();
+//        PageRequest pageRequest=PageRequest.of(page,10);
+        List<MessageBoardInfo> messageList1 = messageBoardRepository.findMyMessageList(userIdx,"N");
+        List<GetMessageBoardRes> content = messageList1.stream().map((MessageBoardInfo t) -> new GetMessageBoardRes(t)).collect(Collectors.toList());
         return new  GetMessageBoardListRes(content);
     }
 }
