@@ -44,6 +44,7 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/tv_community_lookup_nickname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right"
@@ -58,13 +59,31 @@
         android:gravity="left"
         android:layout_margin="15dp"/>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <EditText
+            android:id="@+id/et_community_lookup_reply"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/btn_community_lookup_input"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="입력"/>
+    </LinearLayout>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_community_lookup"
+            android:id="@+id/rv_community_comment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
     </ScrollView>

@@ -48,11 +48,13 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             style="@android:style/Widget.ProgressBar.Horizontal"
-            android:progress="25"/>
+            android:progress="50"/>
         <TextView
+            android:id="@+id/tv_settings_percent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=" 25%"/>
+            android:layout_marginLeft="5dp"
+            android:text="50%"/>
 
     </LinearLayout>
 

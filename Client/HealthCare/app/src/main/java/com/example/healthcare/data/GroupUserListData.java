@@ -56,16 +56,16 @@ public class GroupUserListData {
 
         @SerializedName("userInfoList")
         @Expose
-        private List<Object> userInfoList = null;
+        private List<UserInfo> userInfoList = null;
         @SerializedName("count")
         @Expose
         private Integer count;
 
-        public List<Object> getUserInfoList() {
+        public List<UserInfo> getUserInfoList() {
             return userInfoList;
         }
 
-        public void setUserInfoList(List<Object> userInfoList) {
+        public void setUserInfoList(List<UserInfo> userInfoList) {
             this.userInfoList = userInfoList;
         }
 
@@ -77,5 +77,64 @@ public class GroupUserListData {
             this.count = count;
         }
 
+        public static class UserInfo {
+
+            @SerializedName("userIdx")
+            @Expose
+            private Integer userIdx;
+            @SerializedName("userName")
+            @Expose
+            private String userName;
+            @SerializedName("userNickName")
+            @Expose
+            private String userNickName;
+            @SerializedName("birth")
+            @Expose
+            private String birth;
+            @SerializedName("photoIdx")
+            @Expose
+            private Integer photoIdx;
+
+            public Integer getUserIdx() {
+                return userIdx;
+            }
+
+            public void setUserIdx(Integer userIdx) {
+                this.userIdx = userIdx;
+            }
+
+            public String getUserName() {
+                return userName;
+            }
+
+            public void setUserName(String userName) {
+                this.userName = userName;
+            }
+
+            public String getUserNickName() {
+                return userNickName;
+            }
+
+            public void setUserNickName(String userNickName) {
+                this.userNickName = userNickName;
+            }
+
+            public String getBirth() {
+                return birth;
+            }
+
+            public void setBirth(String birth) {
+                this.birth = birth;
+            }
+
+            public Integer getPhotoIdx() {
+                return photoIdx;
+            }
+
+            public void setPhotoIdx(Integer photoIdx) {
+                this.photoIdx = photoIdx;
+            }
+
+        }
     }
 }

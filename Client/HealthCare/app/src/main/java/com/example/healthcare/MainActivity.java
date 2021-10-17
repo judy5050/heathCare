@@ -90,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
                     // success
                     if(result.getCode() == 1013){
                         Intent intent = new Intent(MainActivity.this, HomePrepareActivity.class);
+                        intent.putExtra("jwt", result.getResult().getJwt());
                         startActivity(intent);
                     }
                     // fail
