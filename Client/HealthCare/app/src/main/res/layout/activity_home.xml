@@ -27,7 +27,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="30dp">
+            android:layout_margin="20dp">
 
             <ImageView
                 android:id="@+id/iv_home_icon"
@@ -59,9 +59,27 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="평균 사용 시간 : "/>
+            <TextView
+                android:id="@+id/tv_home_avgtime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="15분"/>
+        </LinearLayout>
+
+
+
         <ImageView
             android:id="@+id/iv_home_userdata"
-            android:layout_margin="20dp"
+            android:layout_margin="10dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 

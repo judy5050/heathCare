@@ -35,6 +35,7 @@ public class HomeActivity extends AppCompatActivity {
     private TextView tv_home_nickname;
     private TextView tv_home_name;
     private TextView tv_home_birthday;
+    private TextView tv_home_avgtime;
 
     private Intent intent;
 
@@ -44,6 +45,7 @@ public class HomeActivity extends AppCompatActivity {
     private int photoIdx, useridx;
     private final List<Integer> image = new ArrayList<>();
     private final List<Integer> user = new ArrayList<>();
+    private final List<Integer> avg = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +87,7 @@ public class HomeActivity extends AppCompatActivity {
         tv_home_nickname = (TextView) findViewById(R.id.tv_home_nickname);
         tv_home_name = (TextView) findViewById(R.id.tv_home_name);
         tv_home_birthday = (TextView) findViewById(R.id.tv_home_birthday);
+        tv_home_avgtime = (TextView)findViewById(R.id.tv_home_avgtime);
 
         image.add( R.drawable.icon_plus);
         image.add( R.drawable.icon_man1);
@@ -94,14 +97,20 @@ public class HomeActivity extends AppCompatActivity {
         image.add( R.drawable.icon_woman2);
         image.add( R.drawable.icon_woman3);
 
-        user.add( R.drawable.image_user_1);
-        user.add( R.drawable.image_user_2);
-        user.add( R.drawable.image_user_3);
-        user.add( R.drawable.image_user_4);
+        user.add( R.drawable.image_user1_1);
+        user.add( R.drawable.image_user1_2);
+        user.add( R.drawable.image_user1_3);
+        user.add( R.drawable.image_user1_4);
+
+        avg.add(9);
+        avg.add(8);
+        avg.add(8);
+        avg.add(9);
 
         tv_home_nickname.setText(nickname);
         tv_home_name.setText(name);
         tv_home_birthday.setText(birthday);
+        tv_home_avgtime.setText(Integer.toString(avg.get(useridx%4)) + "분");
 
         Bitmap bitmap = BitmapFactory.decodeResource(getResources(), image.get(photoIdx));
         bitmap = getBitmapSquareCrop(bitmap, bitmap.getWidth(), bitmap.getHeight());

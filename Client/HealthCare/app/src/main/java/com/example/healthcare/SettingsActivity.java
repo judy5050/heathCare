@@ -109,7 +109,7 @@ public class SettingsActivity extends AppCompatActivity {
         apiClient = APIClient.getInstance();
         apiInterface = APIClient.getApiInterface();
         PostCleaningInfoData data = new PostCleaningInfoData();
-        data.setLiquidAmount(25);
+        data.setLiquidAmount(70);
         data.setRecentlyCleaningTime(System.currentTimeMillis()-86400*1000);
         data.setIsCleaned(1);
         data.setAutoCleaningCycle(2);
